@@ -1,6 +1,6 @@
 # Automated Deployment Script - Does Everything Possible
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  🚀 Auto-Deployment Script" -ForegroundColor Cyan
+Write-Host "  Auto-Deployment Script" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -8,19 +8,20 @@ Write-Host ""
 Write-Host "Step 1: Checking Git status..." -ForegroundColor Yellow
 $gitStatus = git status --short
 if ($gitStatus) {
-    Write-Host "⚠️  Uncommitted changes found. Committing..." -ForegroundColor Yellow
+    Write-Host "Uncommitted changes found. Committing..." -ForegroundColor Yellow
     git add .
     git commit -m "Auto-commit before deployment"
-    Write-Host "✅ Changes committed" -ForegroundColor Green
+    Write-Host "Changes committed" -ForegroundColor Green
 } else {
-    Write-Host "✅ Git repository is clean" -ForegroundColor Green
+    Write-Host "Git repository is clean" -ForegroundColor Green
 }
 
 # Step 2: Check if remote exists
-Write-Host "`nStep 2: Checking GitHub remote..." -ForegroundColor Yellow
+Write-Host ""
+Write-Host "Step 2: Checking GitHub remote..." -ForegroundColor Yellow
 $remote = git remote -v
 if (-not $remote) {
-    Write-Host "⚠️  No GitHub remote configured" -ForegroundColor Yellow
+    Write-Host "No GitHub remote configured" -ForegroundColor Yellow
     Write-Host ""
     Write-Host "To set up GitHub:" -ForegroundColor Cyan
     Write-Host "1. Go to: https://github.com/new" -ForegroundColor White
@@ -35,15 +36,16 @@ if (-not $remote) {
             $repoName = "employee-management-system"
         }
         git remote add origin "https://github.com/$username/$repoName.git"
-        Write-Host "✅ Remote added!" -ForegroundColor Green
+        Write-Host "Remote added!" -ForegroundColor Green
     }
 } else {
-    Write-Host "✅ GitHub remote configured" -ForegroundColor Green
+    Write-Host "GitHub remote configured" -ForegroundColor Green
     Write-Host "   $remote" -ForegroundColor Gray
 }
 
 # Step 3: Push to GitHub
-Write-Host "`nStep 3: Pushing to GitHub..." -ForegroundColor Yellow
+Write-Host ""
+Write-Host "Step 3: Pushing to GitHub..." -ForegroundColor Yellow
 $remote = git remote -v
 if ($remote) {
     $push = Read-Host "Push to GitHub now? (y/n)"
@@ -51,25 +53,26 @@ if ($remote) {
         git branch -M main
         git push -u origin main
         if ($LASTEXITCODE -eq 0) {
-            Write-Host "✅ Code pushed to GitHub!" -ForegroundColor Green
+            Write-Host "Code pushed to GitHub!" -ForegroundColor Green
         } else {
-            Write-Host "❌ Push failed. Check your credentials." -ForegroundColor Red
+            Write-Host "Push failed. Check your credentials." -ForegroundColor Red
         }
     }
 } else {
-    Write-Host "⚠️  Skipping push - no remote configured" -ForegroundColor Yellow
+    Write-Host "Skipping push - no remote configured" -ForegroundColor Yellow
 }
 
 # Step 4: Deployment Checklist
-Write-Host "`n========================================" -ForegroundColor Cyan
-Write-Host "  📋 Deployment Checklist" -ForegroundColor Cyan
+Write-Host ""
+Write-Host "========================================" -ForegroundColor Cyan
+Write-Host "  Deployment Checklist" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "✅ Code is ready and committed" -ForegroundColor Green
-Write-Host "✅ Deployment files created (vercel.json)" -ForegroundColor Green
-Write-Host "✅ Environment variables configured" -ForegroundColor Green
+Write-Host "Code is ready and committed" -ForegroundColor Green
+Write-Host "Deployment files created (vercel.json)" -ForegroundColor Green
+Write-Host "Environment variables configured" -ForegroundColor Green
 Write-Host ""
-Write-Host "📝 Next Steps (Manual):" -ForegroundColor Yellow
+Write-Host "Next Steps (Manual):" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "1. MongoDB Atlas Setup:" -ForegroundColor Cyan
 Write-Host "   - Go to: https://www.mongodb.com/cloud/atlas" -ForegroundColor White
@@ -101,12 +104,11 @@ Write-Host "   - Go to Vercel backend project settings" -ForegroundColor White
 Write-Host "   - Update FRONTEND_URL = https://your-frontend.vercel.app" -ForegroundColor White
 Write-Host ""
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "  ✅ Automated steps complete!" -ForegroundColor Green
+Write-Host "  Automated steps complete!" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "📚 For detailed instructions, see:" -ForegroundColor Yellow
+Write-Host "For detailed instructions, see:" -ForegroundColor Yellow
 Write-Host "   - DEPLOYMENT.md" -ForegroundColor White
 Write-Host "   - NEXT_STEPS.md" -ForegroundColor White
 Write-Host "   - START_HERE.md" -ForegroundColor White
 Write-Host ""
-
