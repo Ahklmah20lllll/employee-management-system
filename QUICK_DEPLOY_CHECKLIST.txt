@@ -1,0 +1,59 @@
+═══════════════════════════════════════════════════════════
+  QUICK DEPLOYMENT CHECKLIST
+═══════════════════════════════════════════════════════════
+
+□ STEP 1: MongoDB Atlas (5 min)
+  □ Create account at mongodb.com/cloud/atlas
+  □ Create free cluster (M0)
+  □ Create database user (employee / your-password)
+  □ Add network access (0.0.0.0/0)
+  □ Get connection string
+  □ Save connection string
+
+□ STEP 2: Deploy Backend (5 min)
+  □ Go to vercel.com/new
+  □ Import: Ahklmah20lllll/employee-management-system
+  □ Root Directory: server
+  □ Framework: Other
+  □ Add env vars:
+    □ MONGO_URI = (your MongoDB connection string)
+    □ PORT = 5000
+    □ FRONTEND_URL = (update later)
+  □ Deploy
+  □ Save backend URL
+
+□ STEP 3: Deploy Frontend (5 min)
+  □ Go to vercel.com/new
+  □ Import: Ahklmah20lllll/employee-management-system
+  □ Root Directory: frontend
+  □ Framework: Vite
+  □ Add env var:
+    □ VITE_API_URL = https://your-backend.vercel.app/api
+  □ Deploy
+  □ Save frontend URL
+
+□ STEP 4: Update Backend (2 min)
+  □ Go to backend project settings
+  □ Update FRONTEND_URL = (your frontend URL)
+  □ Redeploy backend
+
+□ STEP 5: Test
+  □ Open frontend URL
+  □ Test login/features
+  □ Check for errors
+
+═══════════════════════════════════════════════════════════
+  YOUR DEPLOYMENT INFO
+═══════════════════════════════════════════════════════════
+
+MongoDB Connection String:
+_________________________________________________________
+
+Backend URL:
+_________________________________________________________
+
+Frontend URL:
+_________________________________________________________
+
+═══════════════════════════════════════════════════════════
+
